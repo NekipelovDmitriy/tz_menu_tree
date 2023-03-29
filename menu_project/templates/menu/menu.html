@@ -1,7 +1,8 @@
 <ul>
     {% for item in items %}
-        <li>
-            <a href="?{{ other_querystring }}&{{ menu }}={{ item.id }}">{{ item.name }}</a>
+        
+        <li class="nav-item menu-item-{{ item.id }}">
+            <a href="?{{ other_querystring }}&{{ menu }}={{ item.id }}" class="nav-link {% if item.active %}active{% endif %}" aria-current="page">{{ item.name }}</a>
         </li>
 
         {% if item.child_items %}

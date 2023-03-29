@@ -1,5 +1,5 @@
 from django import template
-from menu.models import Menu, MenuItem
+from menu.models import MenuItem
 
 
 register = template.Library()
@@ -28,14 +28,14 @@ def draw_menu(context, menu):
         }
 
     result_dict['menu'] = menu
-    result_dict['other_querystring'] = get_querystring(conntext, menu)
+    result_dict['other_querystring'] = get_querystring(context, menu)
 
     return result_dict
 
 
 def get_querystring(context, menu):
     querystring_args = []
-    for key in cobtext['request'].GET:
+    for key in context['request'].GET:
         if key != menu:
             querystring_args.append(key + '=' + context['request'].GET(key))
     querystring = ('&').join(querystring_args)
